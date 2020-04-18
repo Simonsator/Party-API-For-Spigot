@@ -1,12 +1,13 @@
 package de.simonsator.partyandfriends.spigot.api.party;
 
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
-import de.simonsator.partyandfriends.utilities.disable.Deactivated;
+import de.simonsator.partyandfriends.spigot.utilities.disable.Deactivated;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
 
 /**
  * Manages the parties. From here you can get a PlayerParty.
+ *
  * @author Simonsator
  * @version 1.0.0 19.04.17
  */
@@ -39,7 +40,7 @@ public class PartyManager extends JavaPlugin implements Deactivated {
 			String id = jedis.get("paf:parties:players:" + pPlayer.getUniqueId() + ":id");
 			if (id == null)
 				return null;
-			return new PlayerParty(new Integer(id));
+			return new PlayerParty(Integer.parseInt(id));
 		}
 	}
 }
