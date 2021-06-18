@@ -10,6 +10,7 @@ import java.util.UUID;
 
 /**
  * Represents a party with players
+ *
  * @author Simonsator
  * @version 1.0.0 19.04.17
  */
@@ -22,13 +23,13 @@ public class PlayerParty {
 
 	public boolean isAMember(PAFPlayer pPlayer) {
 		try (Jedis jedis = PartyManager.getInstance().getConnection()) {
-			return jedis.lrange("paf:parties:parties:" + ID + ":players", 0, 1000).contains(pPlayer.getUniqueId().toString());
+			return jedis.lrange("paf:parties:" + ID + ":players", 0, 1000).contains(pPlayer.getUniqueId().toString());
 		}
 	}
 
 	protected List<UUID> getInvited() {
 		Jedis jedis = PartyManager.getInstance().getConnection();
-		List<String> list = jedis.lrange("paf:parties:parties:" + ID + ":invited", 0, 1000);
+		List<String> list = jedis.lrange("paf:parties:" + ID + ":invited", 0, 1000);
 		jedis.close();
 		List<UUID> uuids = new ArrayList<>();
 		for (String uuid : list)
@@ -36,21 +37,25 @@ public class PlayerParty {
 		return uuids;
 	}
 
-
-	public PAFPlayer getLeader() {
+	private UUID getLeaderUUID() {
 		Jedis jedis = PartyManager.getInstance().getConnection();
-		String uuid = jedis.get("paf:parties:parties:" + ID + ":leader");
+		String uuid = jedis.hget("paf:parties:" + ID + ":properties", "leader");
 		jedis.close();
 		if (uuid == null)
 			return null;
-		return PAFPlayerManager.getInstance().getPlayer(UUID.fromString(uuid));
+		return UUID.fromString(uuid);
+	}
+
+	public PAFPlayer getLeader() {
+		return PAFPlayerManager.getInstance().getPlayer(getLeaderUUID());
 	}
 
 	public List<PAFPlayer> getPlayers() {
 		List<PAFPlayer> players = new ArrayList<>();
 		Jedis jedis = PartyManager.getInstance().getConnection();
-		for (String uuid : jedis.lrange("paf:parties:parties:" + ID + ":players", 0, 1000)) {
-			players.add(PAFPlayerManager.getInstance().getPlayer(UUID.fromString(uuid)));
+		for (String uuid : jedis.lrange("paf:parties:" + ID + ":players", 0, 1000)) {
+			PAFPlayer player = PAFPlayerManager.getInstance().getPlayer(UUID.fromString(uuid));
+			players.add(player);
 		}
 		jedis.close();
 		return players;

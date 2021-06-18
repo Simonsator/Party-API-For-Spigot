@@ -37,7 +37,7 @@ public class PartyManager extends JavaPlugin implements Deactivated {
 
 	public PlayerParty getParty(PAFPlayer pPlayer) {
 		try (Jedis jedis = getConnection()) {
-			String id = jedis.get("paf:parties:players:" + pPlayer.getUniqueId() + ":id");
+			String id = jedis.hget("paf:parties:players:id", pPlayer.getUniqueId().toString());
 			if (id == null)
 				return null;
 			return new PlayerParty(Integer.parseInt(id));
