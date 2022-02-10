@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			<version>4.0.1</version>
+			<version>4.1.0</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -104,5 +104,18 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>3.5.1</version>
+			</extension>
+		</extensions>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>simonsators-web-server</id>
+			<url>sftp://ssh.strato.de/simonsator/repo</url>
+		</repository>
+	</distributionManagement>
 </project>
