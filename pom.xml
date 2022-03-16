@@ -41,14 +41,8 @@
 		<dependency>
 			<groupId>de.simonsator</groupId>
 			<artifactId>Party-and-Friends-MySQL-Edition-Spigot-API</artifactId>
-			<version>1.5.1</version>
+			<version>1.5.3</version>
 			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>be.maximvdw</groupId>
-					<artifactId>MVdWPlaceholderAPI</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>redis.clients</groupId>
