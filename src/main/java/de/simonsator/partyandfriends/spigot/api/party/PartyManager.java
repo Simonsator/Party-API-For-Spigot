@@ -35,6 +35,11 @@ public class PartyManager extends JavaPlugin implements Deactivated {
 		return jedis;
 	}
 
+	/**
+	 * @param pPlayer The player
+	 * @return Returns null if the player is not in a party. If the player is in a party (either as the leader or as a party member),
+	 * then this function returns a PlayerParty representing the party.
+	 */
 	public PlayerParty getParty(PAFPlayer pPlayer) {
 		try (Jedis jedis = getConnection()) {
 			String id = jedis.hget("paf:parties:players:id", pPlayer.getUniqueId().toString());
