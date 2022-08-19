@@ -6,14 +6,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.Jedis;
 
 /**
- * Manages the parties. From here you can get a PlayerParty.
+ * Manages the parties. From here you can get a {@link de.simonsator.partyandfriends.spigot.api.party.PlayerParty PlayerParty}.
  *
  * @author Simonsator
- * @version 1.0.0 19.04.17
  */
 public class PartyManager extends JavaPlugin implements Deactivated {
 	private static PartyManager instance;
 
+	/**
+	 * This object should only be created by the server during startup. Don't create a new instance of this object. Use {@link #getInstance()} instead.
+	 */
 	public PartyManager() {
 		instance = this;
 	}
@@ -24,6 +26,11 @@ public class PartyManager extends JavaPlugin implements Deactivated {
 		saveConfig();
 	}
 
+	/**
+	 * Returns an instance of this class, which was created during the startup of the server
+	 *
+	 * @return Returns an instance of this class, which was created during the startup of the server
+	 */
 	public static PartyManager getInstance() {
 		return instance;
 	}
@@ -36,7 +43,10 @@ public class PartyManager extends JavaPlugin implements Deactivated {
 	}
 
 	/**
-	 * @param pPlayer The player
+	 * Returns null if the player is not in a party. If the player is in a party (either as the leader or as a party member),
+	 * then this function returns a {@link de.simonsator.partyandfriends.spigot.api.party.PlayerParty PlayerParty} representing the party.
+	 *
+	 * @param pPlayer The player who might be in a party
 	 * @return Returns null if the player is not in a party. If the player is in a party (either as the leader or as a party member),
 	 * then this function returns a {@link de.simonsator.partyandfriends.spigot.api.party.PlayerParty PlayerParty} representing the party.
 	 */

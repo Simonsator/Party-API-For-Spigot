@@ -12,16 +12,17 @@ import java.util.UUID;
  * Represents a party with players
  *
  * @author Simonsator
- * @version 1.0.0 19.04.17
  */
 public class PlayerParty {
 	private final int ID;
 
-	public PlayerParty(int pID) {
+	PlayerParty(int pID) {
 		ID = pID;
 	}
 
 	/**
+	 * Returns true if the player is a member of the party. Returns false if the player is not part of this party or if the player is the party leader.
+	 *
 	 * @param pPlayer The player
 	 * @return Returns true if the player is a member of the party. Returns false if the player is not part of this party or if the player is the party leader.
 	 */
@@ -51,6 +52,8 @@ public class PlayerParty {
 	}
 
 	/**
+	 * Returns the party leader
+	 *
 	 * @return Returns the party leader
 	 */
 	public PAFPlayer getLeader() {
@@ -74,6 +77,8 @@ public class PlayerParty {
 	}
 
 	/**
+	 * Returns true if currently nobody is invited into the party. Returns false if at least one person invited into this party.
+	 *
 	 * @return Returns true if currently nobody is invited into the party. Returns false if at least one person invited into this party.
 	 */
 	public boolean isNobodyInvited() {
@@ -81,6 +86,8 @@ public class PlayerParty {
 	}
 
 	/**
+	 * Returns all players in this party (including the party leader).
+	 *
 	 * @return Returns all players in this party (including the party leader).
 	 */
 	public List<PAFPlayer> getAllPlayers() {
@@ -104,6 +111,9 @@ public class PlayerParty {
 	}
 
 	/**
+	 * Returns true if the given player is the leader of this party,
+	 * and false if he is not the leader, of this party
+	 *
 	 * @param player The player
 	 * @return Returns true if the given player is the leader of this party,
 	 * and false if he is not the leader, of this party
@@ -113,6 +123,9 @@ public class PlayerParty {
 	}
 
 	/**
+	 * Returns true if the player is already invited. Returns false if
+	 * the player is not invited
+	 *
 	 * @param pPlayer The player
 	 * @return Returns true if the player is already invited. Returns false if
 	 * the player is not invited.
