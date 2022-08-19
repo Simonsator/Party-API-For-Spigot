@@ -21,6 +21,10 @@ public class PlayerParty {
 		ID = pID;
 	}
 
+	/**
+	 * @param pPlayer The player
+	 * @return Returns true if the player is a member of the party. Returns false if the player is not part of this party or if the player is the party leader.
+	 */
 	public boolean isAMember(PAFPlayer pPlayer) {
 		try (Jedis jedis = PartyManager.getInstance().getConnection()) {
 			return jedis.lrange("paf:parties:" + ID + ":players", 0, 1000).contains(pPlayer.getUniqueId().toString());
@@ -46,10 +50,18 @@ public class PlayerParty {
 		return UUID.fromString(uuid);
 	}
 
+	/**
+	 * @return Returns the party leader
+	 */
 	public PAFPlayer getLeader() {
 		return PAFPlayerManager.getInstance().getPlayer(getLeaderUUID());
 	}
 
+	/**
+	 * Returns a list of all the players in this party who are not the party leader.
+	 *
+	 * @return Returns a list of all the players in this party who are not the party leader.
+	 */
 	public List<PAFPlayer> getPlayers() {
 		List<PAFPlayer> players = new ArrayList<>();
 		Jedis jedis = PartyManager.getInstance().getConnection();
@@ -61,12 +73,15 @@ public class PlayerParty {
 		return players;
 	}
 
+	/**
+	 * @return Returns true if currently nobody is invited into the party. Returns false if at least one person invited into this party.
+	 */
 	public boolean isNobodyInvited() {
 		return getInvited().isEmpty();
 	}
 
 	/**
-	 * @return Returns all players in this party (inclusive the leader).
+	 * @return Returns all players in this party (including the party leader).
 	 */
 	public List<PAFPlayer> getAllPlayers() {
 		List<PAFPlayer> allPlayers = getPlayers();
@@ -88,10 +103,20 @@ public class PlayerParty {
 		return isAMember(pPlayer) || pPlayer.getUniqueId().equals(getLeader().getUniqueId());
 	}
 
+	/**
+	 * @param player The player
+	 * @return Returns true if the given player is the leader of this party,
+	 * and false if he is not the leader, of this party
+	 */
 	public boolean isLeader(PAFPlayer player) {
 		return getLeader() != null && player != null && this.getLeader().getUniqueId().equals(player.getUniqueId());
 	}
 
+	/**
+	 * @param pPlayer The player
+	 * @return Returns true if the player is already invited. Returns false if
+	 * the player is not invited.
+	 */
 	public boolean isInvited(PAFPlayer pPlayer) {
 		return getInvited().contains(pPlayer.getUniqueId());
 	}
