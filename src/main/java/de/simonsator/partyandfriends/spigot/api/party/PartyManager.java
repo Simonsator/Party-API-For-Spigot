@@ -50,6 +50,7 @@ public class PartyManager extends JavaPlugin implements Deactivated {
 	 * @return Returns null if the player is not in a party. If the player is in a party (either as the leader or as a party member),
 	 * then this function returns a {@link de.simonsator.partyandfriends.spigot.api.party.PlayerParty PlayerParty} representing the party.
 	 */
+	@SuppressWarnings("unused")
 	public PlayerParty getParty(PAFPlayer pPlayer) {
 		try (Jedis jedis = getConnection()) {
 			String id = jedis.hget("paf:parties:players:id", pPlayer.getUniqueId().toString());

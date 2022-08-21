@@ -69,8 +69,7 @@ public class PlayerParty {
 		List<PAFPlayer> players = new ArrayList<>();
 		Jedis jedis = PartyManager.getInstance().getConnection();
 		for (String uuid : jedis.lrange("paf:parties:" + ID + ":players", 0, 1000)) {
-			PAFPlayer player = PAFPlayerManager.getInstance().getPlayer(UUID.fromString(uuid));
-			players.add(player);
+			players.add(PAFPlayerManager.getInstance().getPlayer(UUID.fromString(uuid)));
 		}
 		jedis.close();
 		return players;
@@ -81,6 +80,7 @@ public class PlayerParty {
 	 *
 	 * @return Returns true if currently nobody is invited into the party. Returns false if at least one person invited into this party.
 	 */
+	@SuppressWarnings("unused")
 	public boolean isNobodyInvited() {
 		return getInvited().isEmpty();
 	}
@@ -90,6 +90,7 @@ public class PlayerParty {
 	 *
 	 * @return Returns all players in this party (including the party leader).
 	 */
+	@SuppressWarnings("unused")
 	public List<PAFPlayer> getAllPlayers() {
 		List<PAFPlayer> allPlayers = getPlayers();
 		PAFPlayer leader = getLeader();
@@ -106,6 +107,7 @@ public class PlayerParty {
 	 * @return Returns true if the player is in the party. Returns false if the
 	 * player is not in the party.
 	 */
+	@SuppressWarnings("unused")
 	public boolean isInParty(PAFPlayer pPlayer) {
 		return isAMember(pPlayer) || pPlayer.getUniqueId().equals(getLeader().getUniqueId());
 	}
@@ -118,6 +120,7 @@ public class PlayerParty {
 	 * @return Returns true if the given player is the leader of this party,
 	 * and false if he is not the leader, of this party
 	 */
+	@SuppressWarnings("unused")
 	public boolean isLeader(PAFPlayer player) {
 		return getLeader() != null && player != null && this.getLeader().getUniqueId().equals(player.getUniqueId());
 	}
@@ -130,6 +133,7 @@ public class PlayerParty {
 	 * @return Returns true if the player is already invited. Returns false if
 	 * the player is not invited.
 	 */
+	@SuppressWarnings("unused")
 	public boolean isInvited(PAFPlayer pPlayer) {
 		return getInvited().contains(pPlayer.getUniqueId());
 	}
