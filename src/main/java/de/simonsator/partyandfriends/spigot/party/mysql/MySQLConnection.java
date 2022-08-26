@@ -18,8 +18,7 @@ public class MySQLConnection extends SQLCommunication {
 		this.TABLE_PREFIX = pMySQLData.TABLE_PREFIX;
 		try {
 			if (!tableExists(getConnection(), TABLE_PREFIX + "party"))
-				//TODO Better error
-				new ErrorReporter("You did not install this plugin to the bungeecord");
+				new ErrorReporter("§cYou did not install this plugin on your Bungeecord/Velocity server. Please read the installation guid (https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation)");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
