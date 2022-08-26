@@ -1,22 +1,27 @@
-package de.simonsator.partyandfriends.spigot.proxy.bungee;
+package de.simonsator.partyandfriends.velocity.spigot.proxy;
 
-import de.simonsator.partyandfriends.api.PAFExtension;
-import de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter;
+import com.velocitypowered.api.event.Subscribe;
 import de.simonsator.partyandfriends.api.events.party.LeftPartyEvent;
-import de.simonsator.partyandfriends.api.events.party.PartyCreatedEvent;
 import de.simonsator.partyandfriends.api.events.party.PartyJoinEvent;
 import de.simonsator.partyandfriends.api.events.party.PartyLeaderChangedEvent;
-import de.simonsator.partyandfriends.communication.sql.MySQLData;
-import de.simonsator.partyandfriends.communication.sql.pool.PoolData;
-import de.simonsator.partyandfriends.main.Main;
 import de.simonsator.partyandfriends.pafplayers.mysql.PAFPlayerMySQL;
-import net.md_5.bungee.api.plugin.Listener;
+import de.simonsator.partyandfriends.velocity.api.PAFExtension;
+import de.simonsator.partyandfriends.velocity.api.adapter.BukkitBungeeAdapter;
+import de.simonsator.partyandfriends.velocity.api.events.party.PartyCreatedEvent;
+import de.simonsator.partyandfriends.velocity.communication.sql.MySQLData;
+import de.simonsator.partyandfriends.velocity.communication.sql.pool.PoolData;
+import de.simonsator.partyandfriends.velocity.main.Main;
 import net.md_5.bungee.event.EventHandler;
 
+import java.nio.file.Path;
 import java.sql.SQLException;
 
-public class PartyAPIForSpigotBungeeBridgePlugin extends PAFExtension implements Listener {
-	private PartyBridgeBungeeMySQLConnection connection;
+public class PartyAPIForSpigotVelocityBridgePlugin extends PAFExtension {
+	private PartyBridgeVelocityMySQLConnection connection;
+
+	public PartyAPIForSpigotVelocityBridgePlugin(Path folder) {
+		super(folder);
+	}
 
 	@Override
 	public void onEnable() {
@@ -28,7 +33,7 @@ public class PartyAPIForSpigotBungeeBridgePlugin extends PAFExtension implements
 				Main.getInstance().getGeneralConfig().getInt("MySQL.Pool.MaxPoolSize"),
 				Main.getInstance().getGeneralConfig().getInt("MySQL.Pool.InitialPoolSize"), Main.getInstance().getGeneralConfig().getInt("MySQL.Pool.IdleConnectionTestPeriod"), Main.getInstance().getGeneralConfig().getBoolean("MySQL.Pool.TestConnectionOnCheckin"));
 		try {
-			connection = new PartyBridgeBungeeMySQLConnection(mySQLData, poolData);
+			connection = new PartyBridgeVelocityMySQLConnection(mySQLData, poolData);
 			getAdapter().registerListener(this, this);
 			registerAsExtension();
 		} catch (SQLException e) {
@@ -36,14 +41,19 @@ public class PartyAPIForSpigotBungeeBridgePlugin extends PAFExtension implements
 		}
 	}
 
-	@EventHandler
+	@Override
+	public String getName() {
+		return "Party-MySQL-Proxy-Bridge";
+	}
+
+	@Subscribe
 	public void onPartyCreateEvent(PartyCreatedEvent pEvent) {
 		BukkitBungeeAdapter.getInstance().runAsync(this, () -> connection.createParty(pEvent.getParty()));
 	}
 
 	@EventHandler
 	public void onPartyJoinEvent(PartyJoinEvent pEvent) {
-		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
+		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.joinParty(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID(),
 						((PAFPlayerMySQL) pEvent.getPlayer()).getPlayerID()))
 		;
@@ -51,13 +61,13 @@ public class PartyAPIForSpigotBungeeBridgePlugin extends PAFExtension implements
 
 	@EventHandler
 	public void onPartyLeftEvent(LeftPartyEvent pEvent) {
-		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
+		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.leaveParty(((PAFPlayerMySQL) pEvent.getPlayer()).getPlayerID()));
 	}
 
 	@EventHandler
 	public void onPartyLeaderChangedEvent(PartyLeaderChangedEvent pEvent) {
-		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
+		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.changePartyLeader(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID()));
 	}
 }

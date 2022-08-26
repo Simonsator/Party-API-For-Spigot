@@ -23,6 +23,10 @@
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
+		<repository>
+			<id>papermc</id>
+			<url>https://repo.papermc.io/repository/maven-public/</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -55,6 +59,19 @@
 			<groupId>de.simonsator</groupId>
 			<artifactId>BungeecordPartyAndFriends</artifactId>
 			<version>1.0.88</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.velocitypowered</groupId>
+			<artifactId>velocity-api</artifactId>
+			<version>3.1.1</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.simonsator</groupId>
+			<artifactId>VelocityPoweredPartyAndFriends</artifactId>
+			<version>1.0.87</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
