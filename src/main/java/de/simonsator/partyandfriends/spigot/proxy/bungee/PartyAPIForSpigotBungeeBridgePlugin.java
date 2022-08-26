@@ -1,6 +1,7 @@
 package de.simonsator.partyandfriends.spigot.proxy.bungee;
 
 import de.simonsator.partyandfriends.api.PAFExtension;
+import de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter;
 import de.simonsator.partyandfriends.api.events.party.LeftPartyEvent;
 import de.simonsator.partyandfriends.api.events.party.PartyCreatedEvent;
 import de.simonsator.partyandfriends.api.events.party.PartyJoinEvent;
@@ -36,21 +37,21 @@ public class PartyAPIForSpigotBungeeBridgePlugin extends PAFExtension implements
 
 	@EventHandler
 	public void onPartyCreateEvent(PartyCreatedEvent pEvent) {
-		connection.createParty(pEvent.getParty());
+		BukkitBungeeAdapter.getInstance().runAsync(this, () -> connection.createParty(pEvent.getParty()));
 	}
 
 	@EventHandler
 	public void onPartyJoinEvent(PartyJoinEvent pEvent) {
-		connection.joinParty(pEvent.getParty().getLeader(), pEvent.getPlayer());
+		BukkitBungeeAdapter.getInstance().runAsync(this, () -> connection.joinParty(pEvent.getParty().getLeader(), pEvent.getPlayer()));
 	}
 
 	@EventHandler
 	public void onPartyLeftEvent(LeftPartyEvent pEvent) {
-		connection.leaveParty(pEvent.getPlayer());
+		BukkitBungeeAdapter.getInstance().runAsync(this, () -> connection.leaveParty(pEvent.getPlayer()));
 	}
 
 	@EventHandler
 	public void onPartyLeaderChangedEvent(PartyLeaderChangedEvent pEvent) {
-		connection.changePartyLeader(pEvent.getParty().getLeader());
+		BukkitBungeeAdapter.getInstance().runAsync(this, () -> connection.changePartyLeader(pEvent.getParty().getLeader()));
 	}
 }
