@@ -1,5 +1,6 @@
 package de.simonsator.partyandfriends.spigot;
 
+import de.simonsator.partyandfriends.spigot.error.ErrorReporter;
 import de.simonsator.partyandfriends.spigot.main.Main;
 import de.simonsator.partyandfriends.spigot.party.mysql.MySQLPartyManager;
 import de.simonsator.partyandfriends.spigot.party.redis.RedisPartyManager;
@@ -20,7 +21,7 @@ public class PartyAPIForSpigotPlugin extends JavaPlugin {
 				new MySQLPartyManager(Main.getInstance().getMySQLData());
 				break;
 			default:
-				throw new IllegalArgumentException("PartyDataTransferMethod must be either \"redis\" or \"mysql\"");
+				new ErrorReporter("PartyDataTransferMethod must be either \"redis\" or \"mysql\". Please refer to the installation guide for more information.");
 		}
 	}
 }

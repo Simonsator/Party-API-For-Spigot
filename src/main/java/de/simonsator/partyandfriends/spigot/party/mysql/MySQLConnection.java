@@ -3,12 +3,10 @@ package de.simonsator.partyandfriends.spigot.party.mysql;
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.communication.sql.MySQLData;
 import de.simonsator.partyandfriends.spigot.communication.sql.SQLCommunication;
+import de.simonsator.partyandfriends.spigot.error.ErrorReporter;
 import de.simonsator.partyandfriends.spigot.pafplayers.mysql.PAFPlayerMySQL;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +16,19 @@ public class MySQLConnection extends SQLCommunication {
 	public MySQLConnection(MySQLData pMySQLData) {
 		super(pMySQLData.DATABASE, "jdbc:mysql://" + pMySQLData.HOST + ":" + pMySQLData.PORT, pMySQLData.USERNAME, pMySQLData.PASSWORD, pMySQLData.USE_SSL);
 		this.TABLE_PREFIX = pMySQLData.TABLE_PREFIX;
+		try {
+			if (!tableExists(getConnection(), TABLE_PREFIX + "party"))
+				//TODO Better error
+				new ErrorReporter("You did not install this plugin to the bungeecord");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private boolean tableExists(Connection connection, String tableName) throws SQLException {
+		DatabaseMetaData meta = connection.getMetaData();
+		ResultSet resultSet = meta.getTables(null, null, tableName, new String[]{"TABLE"});
+		return resultSet.next();
 	}
 
 	public MySQLPlayerParty getParty(int pPlayerId) {
