@@ -2,6 +2,7 @@ package de.simonsator.partyandfriends.spigot.api.party;
 
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.utilities.disable.Deactivated;
+import de.simonsator.partyandfriends.spigot.utilities.disable.Disabler;
 
 /**
  * Manages the parties. From here you can get a {@link de.simonsator.partyandfriends.spigot.api.party.PlayerParty PlayerParty}.
@@ -16,6 +17,7 @@ public abstract class PartyManager implements Deactivated {
 	 */
 	public PartyManager() {
 		instance = this;
+		Disabler.getInstance().registerDeactivated(this);
 	}
 
 	/**

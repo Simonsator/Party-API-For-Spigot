@@ -1,3 +1,5 @@
+# Either set to redis or mysql
+PartyDataTransferMethod: 'None'
 Redis:
   Host: 'localhost'
   Password: ''
