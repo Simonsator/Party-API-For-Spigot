@@ -83,7 +83,7 @@
 					<relocations>
 						<relocation>
 							<pattern>redis.clients</pattern>
-							<shadedPattern>de.simonsator.partyandfriends</shadedPattern>
+							<shadedPattern>de.simonsator.partyandfriends.redisclient</shadedPattern>
 						</relocation>
 					</relocations>
 					<createDependencyReducedPom>false</createDependencyReducedPom>
