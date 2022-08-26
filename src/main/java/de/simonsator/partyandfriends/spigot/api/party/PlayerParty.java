@@ -1,10 +1,7 @@
 package de.simonsator.partyandfriends.spigot.api.party;
 
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
-import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayerManager;
-import redis.clients.jedis.Jedis;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,68 +10,30 @@ import java.util.UUID;
  *
  * @author Simonsator
  */
-public class PlayerParty {
-	private final int ID;
-
-	PlayerParty(int pID) {
-		ID = pID;
-	}
-
+public abstract class PlayerParty {
 	/**
 	 * Returns true if the player is a member of the party. Returns false if the player is not part of this party or if the player is the party leader.
 	 *
 	 * @param pPlayer The player
 	 * @return Returns true if the player is a member of the party. Returns false if the player is not part of this party or if the player is the party leader.
 	 */
-	public boolean isAMember(PAFPlayer pPlayer) {
-		try (Jedis jedis = PartyManager.getInstance().getConnection()) {
-			return jedis.lrange("paf:parties:" + ID + ":players", 0, 1000).contains(pPlayer.getUniqueId().toString());
-		}
-	}
+	public abstract boolean isAMember(PAFPlayer pPlayer);
 
-	protected List<UUID> getInvited() {
-		Jedis jedis = PartyManager.getInstance().getConnection();
-		List<String> list = jedis.lrange("paf:parties:" + ID + ":invited", 0, 1000);
-		jedis.close();
-		List<UUID> uuids = new ArrayList<>();
-		for (String uuid : list)
-			uuids.add(UUID.fromString(uuid));
-		return uuids;
-	}
-
-	private UUID getLeaderUUID() {
-		Jedis jedis = PartyManager.getInstance().getConnection();
-		String uuid = jedis.hget("paf:parties:" + ID + ":properties", "leader");
-		jedis.close();
-		if (uuid == null)
-			return null;
-		return UUID.fromString(uuid);
-	}
+	protected abstract List<UUID> getInvited();
 
 	/**
 	 * Returns the party leader
 	 *
 	 * @return Returns the party leader
 	 */
-	public PAFPlayer getLeader() {
-		return PAFPlayerManager.getInstance().getPlayer(getLeaderUUID());
-	}
+	public abstract PAFPlayer getLeader();
 
 	/**
 	 * Returns a list of all the players in this party who are not the party leader.
 	 *
 	 * @return Returns a list of all the players in this party who are not the party leader.
 	 */
-	public List<PAFPlayer> getPlayers() {
-		List<PAFPlayer> players = new ArrayList<>();
-		Jedis jedis = PartyManager.getInstance().getConnection();
-		for (String uuid : jedis.lrange("paf:parties:" + ID + ":players", 0, 1000)) {
-			PAFPlayer player = PAFPlayerManager.getInstance().getPlayer(UUID.fromString(uuid));
-			players.add(player);
-		}
-		jedis.close();
-		return players;
-	}
+	public abstract List<PAFPlayer> getPlayers();
 
 	/**
 	 * Returns true if currently nobody is invited into the party. Returns false if at least one person invited into this party.
