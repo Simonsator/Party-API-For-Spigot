@@ -1,17 +1,16 @@
 package de.simonsator.partyandfriends.velocity.spigot.proxy;
 
 import com.velocitypowered.api.event.Subscribe;
-import de.simonsator.partyandfriends.api.events.party.LeftPartyEvent;
-import de.simonsator.partyandfriends.api.events.party.PartyJoinEvent;
-import de.simonsator.partyandfriends.api.events.party.PartyLeaderChangedEvent;
-import de.simonsator.partyandfriends.pafplayers.mysql.PAFPlayerMySQL;
 import de.simonsator.partyandfriends.velocity.api.PAFExtension;
 import de.simonsator.partyandfriends.velocity.api.adapter.BukkitBungeeAdapter;
+import de.simonsator.partyandfriends.velocity.api.events.party.LeftPartyEvent;
 import de.simonsator.partyandfriends.velocity.api.events.party.PartyCreatedEvent;
+import de.simonsator.partyandfriends.velocity.api.events.party.PartyJoinEvent;
+import de.simonsator.partyandfriends.velocity.api.events.party.PartyLeaderChangedEvent;
 import de.simonsator.partyandfriends.velocity.communication.sql.MySQLData;
 import de.simonsator.partyandfriends.velocity.communication.sql.pool.PoolData;
 import de.simonsator.partyandfriends.velocity.main.Main;
-import net.md_5.bungee.event.EventHandler;
+import de.simonsator.partyandfriends.velocity.pafplayers.mysql.PAFPlayerMySQL;
 
 import java.nio.file.Path;
 import java.sql.SQLException;
@@ -51,7 +50,7 @@ public class PartyAPIForSpigotVelocityBridgePlugin extends PAFExtension {
 		BukkitBungeeAdapter.getInstance().runAsync(this, () -> connection.createParty(pEvent.getParty()));
 	}
 
-	@EventHandler
+	@Subscribe
 	public void onPartyJoinEvent(PartyJoinEvent pEvent) {
 		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.joinParty(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID(),
@@ -59,13 +58,13 @@ public class PartyAPIForSpigotVelocityBridgePlugin extends PAFExtension {
 		;
 	}
 
-	@EventHandler
+	@Subscribe
 	public void onPartyLeftEvent(LeftPartyEvent pEvent) {
 		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.leaveParty(((PAFPlayerMySQL) pEvent.getPlayer()).getPlayerID()));
 	}
 
-	@EventHandler
+	@Subscribe
 	public void onPartyLeaderChangedEvent(PartyLeaderChangedEvent pEvent) {
 		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.changePartyLeader(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID()));
