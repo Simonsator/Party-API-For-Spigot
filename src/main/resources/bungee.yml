@@ -1,0 +1,7 @@
+main: de.simonsator.partyandfriends.spigot.proxy.bungee.PartyAPIForSpigotBungeeBridgePlugin
+name: Party-MySQL-Proxy-Bridge
+version: ${project.version}
+author: Simonsator
+depend: [ PartyAndFriends ]
+depends:
+  - PartyAndFriends

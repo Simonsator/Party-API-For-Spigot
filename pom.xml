@@ -12,8 +12,8 @@
 	</properties>
 	<repositories>
 		<repository>
-			<id>ghac Repo</id>
-			<url>https://nexus.ghac.de/content/repositories/snapshots/</url>
+			<id>bungeecord-repo</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</repository>
 		<repository>
 			<id>simonsators-repo</id>
@@ -31,13 +31,6 @@
 			<version>1.13.2-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
-		<!--Bukkit API-->
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.13.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
 		<dependency>
 			<groupId>de.simonsator</groupId>
 			<artifactId>Party-and-Friends-MySQL-Edition-Spigot-API</artifactId>
@@ -50,6 +43,19 @@
 			<version>4.2.3</version>
 			<type>jar</type>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.md-5</groupId>
+			<artifactId>bungeecord-api</artifactId>
+			<version>1.19-R0.1-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.simonsator</groupId>
+			<artifactId>BungeecordPartyAndFriends</artifactId>
+			<version>1.0.88</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>
