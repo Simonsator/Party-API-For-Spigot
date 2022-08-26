@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.simonsator</groupId>
-	<artifactId>Spigot-Party-API-For-RedisBungee</artifactId>
+	<artifactId>Spigot-Party-API</artifactId>
 	<version>1.0.3-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
