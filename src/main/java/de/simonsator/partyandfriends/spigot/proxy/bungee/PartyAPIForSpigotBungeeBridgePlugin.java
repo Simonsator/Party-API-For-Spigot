@@ -6,6 +6,7 @@ import de.simonsator.partyandfriends.api.events.party.LeftPartyEvent;
 import de.simonsator.partyandfriends.api.events.party.PartyCreatedEvent;
 import de.simonsator.partyandfriends.api.events.party.PartyJoinEvent;
 import de.simonsator.partyandfriends.api.events.party.PartyLeaderChangedEvent;
+import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
 import de.simonsator.partyandfriends.communication.sql.MySQLData;
 import de.simonsator.partyandfriends.communication.sql.pool.PoolData;
 import de.simonsator.partyandfriends.main.Main;
@@ -14,6 +15,8 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PartyAPIForSpigotBungeeBridgePlugin extends PAFExtension implements Listener {
 	private PartyBridgeBungeeMySQLConnection connection;
@@ -38,7 +41,13 @@ public class PartyAPIForSpigotBungeeBridgePlugin extends PAFExtension implements
 
 	@EventHandler
 	public void onPartyCreateEvent(PartyCreatedEvent pEvent) {
-		BukkitBungeeAdapter.getInstance().runAsync(this, () -> connection.createParty(pEvent.getParty()));
+		List<OnlinePAFPlayer> players = pEvent.getParty().getAllPlayers();
+		List<Integer> partyMembersIds = new ArrayList<>(players.size());
+		for (OnlinePAFPlayer player : players) {
+			partyMembersIds.add(((PAFPlayerMySQL) player).getPlayerID());
+		}
+		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
+				connection.createParty(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID(), partyMembersIds));
 	}
 
 	@EventHandler

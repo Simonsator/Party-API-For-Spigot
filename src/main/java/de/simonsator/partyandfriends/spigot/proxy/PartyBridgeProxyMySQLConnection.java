@@ -1,13 +1,10 @@
 package de.simonsator.partyandfriends.spigot.proxy;
 
-import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
-import de.simonsator.partyandfriends.api.party.PlayerParty;
-import de.simonsator.partyandfriends.pafplayers.mysql.PAFPlayerMySQL;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public interface PartyBridgeProxyMySQLConnection {
 	String getTablePrefix();
@@ -36,14 +33,13 @@ public interface PartyBridgeProxyMySQLConnection {
 		}
 	}
 
-	default void createParty(PlayerParty pParty) {
+	default void createParty(int leaderId, List<Integer> memberIds) {
 		Connection con = getConnection();
 		PreparedStatement prepStmt = null;
 		try {
 			prepStmt = con.prepareStatement("insert into `" + getTablePrefix() + "party` (`player_member_id`, `leader_id`) values ( ?, ?)");
-			int leaderId = ((PAFPlayerMySQL) pParty.getLeader()).getPlayerID();
-			for (OnlinePAFPlayer pafPlayer : pParty.getAllPlayers()) {
-				prepStmt.setInt(1, ((PAFPlayerMySQL) pafPlayer).getPlayerID());
+			for (int memberId : memberIds) {
+				prepStmt.setInt(1, memberId);
 				prepStmt.setInt(2, leaderId);
 				prepStmt.addBatch();
 			}

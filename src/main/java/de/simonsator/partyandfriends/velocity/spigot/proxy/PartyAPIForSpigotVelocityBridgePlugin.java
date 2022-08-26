@@ -7,6 +7,7 @@ import de.simonsator.partyandfriends.velocity.api.events.party.LeftPartyEvent;
 import de.simonsator.partyandfriends.velocity.api.events.party.PartyCreatedEvent;
 import de.simonsator.partyandfriends.velocity.api.events.party.PartyJoinEvent;
 import de.simonsator.partyandfriends.velocity.api.events.party.PartyLeaderChangedEvent;
+import de.simonsator.partyandfriends.velocity.api.pafplayers.OnlinePAFPlayer;
 import de.simonsator.partyandfriends.velocity.communication.sql.MySQLData;
 import de.simonsator.partyandfriends.velocity.communication.sql.pool.PoolData;
 import de.simonsator.partyandfriends.velocity.main.Main;
@@ -14,6 +15,8 @@ import de.simonsator.partyandfriends.velocity.pafplayers.mysql.PAFPlayerMySQL;
 
 import java.nio.file.Path;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PartyAPIForSpigotVelocityBridgePlugin extends PAFExtension {
 	private PartyBridgeVelocityMySQLConnection connection;
@@ -47,12 +50,18 @@ public class PartyAPIForSpigotVelocityBridgePlugin extends PAFExtension {
 
 	@Subscribe
 	public void onPartyCreateEvent(PartyCreatedEvent pEvent) {
-		BukkitBungeeAdapter.getInstance().runAsync(this, () -> connection.createParty(pEvent.getParty()));
+		List<OnlinePAFPlayer> players = pEvent.getParty().getAllPlayers();
+		List<Integer> partyMembersIds = new ArrayList<>(players.size());
+		for (OnlinePAFPlayer player : players) {
+			partyMembersIds.add(((PAFPlayerMySQL) player).getPlayerID());
+		}
+		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
+				connection.createParty(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID(), partyMembersIds));
 	}
 
 	@Subscribe
 	public void onPartyJoinEvent(PartyJoinEvent pEvent) {
-		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
+		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.joinParty(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID(),
 						((PAFPlayerMySQL) pEvent.getPlayer()).getPlayerID()))
 		;
@@ -60,13 +69,13 @@ public class PartyAPIForSpigotVelocityBridgePlugin extends PAFExtension {
 
 	@Subscribe
 	public void onPartyLeftEvent(LeftPartyEvent pEvent) {
-		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
+		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.leaveParty(((PAFPlayerMySQL) pEvent.getPlayer()).getPlayerID()));
 	}
 
 	@Subscribe
 	public void onPartyLeaderChangedEvent(PartyLeaderChangedEvent pEvent) {
-		de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter.getInstance().runAsync(this, () ->
+		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.changePartyLeader(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID()));
 	}
 }
