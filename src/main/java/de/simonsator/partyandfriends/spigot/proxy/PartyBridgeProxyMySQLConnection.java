@@ -21,7 +21,8 @@ public interface PartyBridgeProxyMySQLConnection {
 		Connection con = getConnection();
 		PreparedStatement prepStmt = null;
 		try {
-			prepStmt = con.prepareStatement("CREATE TABLE IF NOT EXISTS `" + getTablePrefix() + "party` (`player_member_id` INT(8) NOT NULL, `leader_id` INT(8) NOT NULL);");
+			prepStmt = con.prepareStatement("CREATE TABLE IF NOT EXISTS `" + getTablePrefix() +
+					"party` (`player_member_id` INT(8) NOT NULL, `leader_id` INT(8) NOT NULL, PRIMARY KEY (`player_member_id`));");
 			prepStmt.executeUpdate();
 		} finally {
 			close(con, prepStmt);
@@ -73,7 +74,7 @@ public interface PartyBridgeProxyMySQLConnection {
 		Connection con = getConnection();
 		PreparedStatement prepStmt = null;
 		try {
-			prepStmt = con.prepareStatement("insert into `" + getTablePrefix() + "party` (`player_member_id`, `leader_id`) values ( ?, ?)");
+			prepStmt = con.prepareStatement("insert IGNORE into `" + getTablePrefix() + "party` (`player_member_id`, `leader_id`) values ( ?, ?) ");
 			prepStmt.setInt(1, ((PAFPlayerMySQL) player).getPlayerID());
 			prepStmt.setInt(2, ((PAFPlayerMySQL) leader).getPlayerID());
 			prepStmt.executeUpdate();
