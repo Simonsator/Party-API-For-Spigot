@@ -2,7 +2,6 @@ package de.simonsator.partyandfriends.spigot.api.party;
 
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.utilities.disable.Deactivated;
-import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Manages the parties. From here you can get a {@link de.simonsator.partyandfriends.spigot.api.party.PlayerParty PlayerParty}.
