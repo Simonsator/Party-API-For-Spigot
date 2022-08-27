@@ -12,8 +12,8 @@
 	<artifactId>spigot-party-api-velocity-mysql</artifactId>
 
 	<properties>
-		<maven.compiler.source>18</maven.compiler.source>
-		<maven.compiler.target>18</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
@@ -43,6 +43,7 @@
 			<groupId>de.simonsator</groupId>
 			<artifactId>spigot-party-api-proxy-common</artifactId>
 			<version>1.0.3-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
