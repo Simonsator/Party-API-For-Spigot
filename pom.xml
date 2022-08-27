@@ -12,7 +12,7 @@
 		<module>proxy-common</module>
 		<module>bungeecord-mysql</module>
 		<module>velocity-mysql</module>
-		<module>party-spigot-api-for-party-and-friends</module>
+		<module>api</module>
 		<module>spigot-plugin</module>
 	</modules>
 	<properties>
