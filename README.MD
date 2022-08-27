@@ -61,3 +61,5 @@ party data
 ## How to build
 
 To build this plugin use maven. The final output jar can be found in "final-build/target/PartyAPIForSpigotPlugins.jar".
+To test your changes you may use the plugin "test/target/spigot-party-api-test-VERSION.jar". This will output the names
+of the players in the party of the person who send a chat message. 
