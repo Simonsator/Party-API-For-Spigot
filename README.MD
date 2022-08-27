@@ -47,7 +47,7 @@ if (party != null) {
 	<dependency>
 		<groupId>de.simonsator</groupId>
 		<artifactId>spigot-party-api-for-party-and-friends</artifactId>
-		<version>1.0.3-SNAPSHOT</version>
+		<version>1.0.4-RELEASE</version>
 		<scope>provided</scope>
 	</dependency>
 </dependencies>
