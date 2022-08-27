@@ -60,4 +60,4 @@ party data
 
 ## How to build
 
-To build this plugin use maven. The final output jar can be found in the folder "final-build\target".
+To build this plugin use maven. The final output jar can be found in "final-build/target/PartyAPIForSpigotPlugins.jar".

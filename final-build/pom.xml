@@ -25,6 +25,7 @@
 						</includes>
 					</artifactSet>
 					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<outputFile>${project.build.directory}/PartyAPIForSpigotPlugins.jar</outputFile>
 					<filters>
 						<filter>
 							<artifact>*:*</artifact>
