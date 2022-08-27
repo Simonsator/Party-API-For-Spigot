@@ -5,111 +5,30 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.simonsator</groupId>
-	<artifactId>Spigot-Party-API-For-RedisBungee</artifactId>
+	<artifactId>spigot-party-api-parent</artifactId>
+	<packaging>pom</packaging>
 	<version>1.0.3-SNAPSHOT</version>
 	<properties>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
-	<repositories>
-		<repository>
-			<id>ghac Repo</id>
-			<url>https://nexus.ghac.de/content/repositories/snapshots/</url>
-		</repository>
-		<repository>
-			<id>simonsators-repo</id>
-			<url>https://simonsator.de/repo/</url>
-		</repository>
-		<repository>
-			<id>spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-		</repository>
-	</repositories>
-	<dependencies>
-		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>1.13.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<!--Bukkit API-->
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.13.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.simonsator</groupId>
-			<artifactId>Party-and-Friends-MySQL-Edition-Spigot-API</artifactId>
-			<version>1.5.3</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>4.1.0</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<artifactSet>
-						<includes>
-							<include>redis.clients:*</include>
-							<include>de.simonsator</include>
-						</includes>
-					</artifactSet>
-					<relocations>
-						<relocation>
-							<pattern>redis.clients</pattern>
-							<shadedPattern>de.simonsator.partyandfriends</shadedPattern>
-						</relocation>
-					</relocations>
-					<createDependencyReducedPom>false</createDependencyReducedPom>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-				<version>3.5.1</version>
-			</extension>
-		</extensions>
 	</build>
-	<distributionManagement>
-		<repository>
-			<id>simonsators-web-server</id>
-			<url>sftp://ssh.strato.de/simonsator/repo</url>
-		</repository>
-	</distributionManagement>
+	<modules>
+		<module>proxy-common</module>
+		<module>bungeecord-mysql</module>
+		<module>velocity-mysql</module>
+		<module>api</module>
+		<module>spigot-plugin</module>
+		<module>final-build</module>
+		<module>test</module>
+	</modules>
 </project>

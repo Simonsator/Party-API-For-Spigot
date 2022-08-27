@@ -1,6 +1,0 @@
-main: de.simonsator.partyandfriends.spigot.api.party.PartyManager
-name: Spigot-Party-API-PAF
-version: ${project.version}
-author: Simonsator
-depend: [FriendsAPIForPartyAndFriends]
-api-version: 1.13

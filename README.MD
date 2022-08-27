@@ -1,15 +1,20 @@
-# Party-API-For-Spigot
+# Party API for Spigot Plugins for Party and Friends
 
-Provides an API for spigot plugins to access information about Parties
+Provides an API for Spigot plugins to access information about Parties
 from [Party and Friends Extended Edition for Bungeecord/Velocity](https://www.spigotmc.org/resources/party-and-friends-extended-edition-for-bungeecord-velocity-supports-1-7-1-19.10123/)
-. For more information on how to install the plugin please refer
-to [it's spigotmc description](https://www.spigotmc.org/resources/spigot-party-api-for-party-and-friends-extended-redisbungee-required.39751/)
+, [Party and Friends for BungeeCord](https://www.spigotmc.org/resources/party-and-friends-for-bungeecord-supports-1-7-x-to-1-19-x.9531/)
+and [Party and Friends Velocity](https://forums.papermc.io/threads/party-and-friends-for-velocity-version-1-0-87.317/).
+
+For more information on how to install the plugin please refer
+to [the installation guide](https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation).
+
+## Download
+
+You may download a compiled version of the plugin from
+[spigotmc.org](https://www.spigotmc.org/resources/spigot-party-api-for-party-and-friends-extended-redisbungee-required.39751/)
 .
 
-## Alternatives
-
-If you don't want to use RedisBungee you can
-use [this alternative api](https://github.com/Simonsator/Example-For-Spigot-Party-Data-Callback-API)
+# For Developers
 
 ## How to use
 
@@ -23,7 +28,7 @@ if (party != null) {
 }
 ```
 
-## Maven
+## Maven Dependency
 
 ```
 <repositories>
@@ -41,10 +46,20 @@ if (party != null) {
 	</dependency>
 	<dependency>
 		<groupId>de.simonsator</groupId>
-		<artifactId>Spigot-Party-API-For-RedisBungee</artifactId>
+		<artifactId>spigot-party-api-for-party-and-friends</artifactId>
 		<version>1.0.3-SNAPSHOT</version>
 		<scope>provided</scope>
 	</dependency>
 </dependencies>
 ```
 
+### Alternatives
+
+You may also use the [callback api(https://github.com/Simonsator/Example-For-Spigot-Party-Data-Callback-API) to retrieve
+party data
+
+## How to build
+
+To build this plugin use maven. The final output jar can be found in "final-build/target/PartyAPIForSpigotPlugins.jar".
+To test your changes you may use the plugin "test/target/spigot-party-api-test-VERSION.jar". This will output the names
+of the players in the party of the person who send a chat message. 

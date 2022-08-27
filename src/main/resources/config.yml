@@ -1,4 +1,0 @@
-Redis:
-  Host: 'localhost'
-  Password: ''
-  Port: 6379
