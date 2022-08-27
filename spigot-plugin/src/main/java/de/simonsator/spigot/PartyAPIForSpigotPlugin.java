@@ -1,9 +1,9 @@
-package partyandfriends.spigot;
+package de.simonsator.spigot;
 
 import de.simonsator.partyandfriends.spigot.error.ErrorReporter;
 import de.simonsator.partyandfriends.spigot.main.Main;
-import partyandfriends.spigot.party.mysql.MySQLPartyManager;
-import partyandfriends.spigot.party.redis.RedisPartyManager;
+import de.simonsator.spigot.party.mysql.MySQLPartyManager;
+import de.simonsator.spigot.party.redis.RedisPartyManager;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 
