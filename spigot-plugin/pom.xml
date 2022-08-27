@@ -85,7 +85,7 @@
 		<dependency>
 			<groupId>de.simonsator</groupId>
 			<artifactId>spigot-party-api-for-party-and-friends</artifactId>
-			<version>1.0.3-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>redis.clients</groupId>

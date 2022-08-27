@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>de.simonsator</groupId>
 			<artifactId>spigot-party-api-proxy-common</artifactId>
-			<version>1.0.3-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
