@@ -36,7 +36,7 @@ public class PartyAPIForSpigotVelocityBridgePlugin extends PAFExtension {
 				Main.getInstance().getGeneralConfig().getInt("MySQL.Pool.InitialPoolSize"), Main.getInstance().getGeneralConfig().getInt("MySQL.Pool.IdleConnectionTestPeriod"), Main.getInstance().getGeneralConfig().getBoolean("MySQL.Pool.TestConnectionOnCheckin"));
 		try {
 			connection = new PartyBridgeVelocityMySQLConnection(mySQLData, poolData);
-			getAdapter().registerListener(this, this);
+			getAdapter().registerListener(this, Main.getInstance());
 			registerAsExtension();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
