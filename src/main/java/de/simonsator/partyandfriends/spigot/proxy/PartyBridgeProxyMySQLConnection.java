@@ -70,8 +70,9 @@ public interface PartyBridgeProxyMySQLConnection {
 		PreparedStatement prepStmt = null;
 		try {
 			prepStmt = con.prepareStatement("insert IGNORE into `" + getTablePrefix() + "party` (`player_member_id`, `leader_id`) values ( ?, ?) ");
-			prepStmt.setInt(1, pLeaderId);
-			prepStmt.setInt(2, pPlayerId);
+			prepStmt.setInt(1, pPlayerId);
+			prepStmt.setInt(2, pLeaderId);
+
 			prepStmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

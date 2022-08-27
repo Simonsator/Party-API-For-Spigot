@@ -54,8 +54,7 @@ public class PartyAPIForSpigotBungeeBridgePlugin extends PAFExtension implements
 	public void onPartyJoinEvent(PartyJoinEvent pEvent) {
 		BukkitBungeeAdapter.getInstance().runAsync(this, () ->
 				connection.joinParty(((PAFPlayerMySQL) pEvent.getParty().getLeader()).getPlayerID(),
-						((PAFPlayerMySQL) pEvent.getPlayer()).getPlayerID()))
-		;
+						((PAFPlayerMySQL) pEvent.getPlayer()).getPlayerID()));
 	}
 
 	@EventHandler
