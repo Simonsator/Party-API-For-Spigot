@@ -21,7 +21,7 @@ public class PartyAPIForSpigotPlugin extends JavaPlugin {
 				new MySQLPartyManager(Main.getInstance().getMySQLData());
 				break;
 			case "none":
-				new ErrorReporter("§cThe plugin has not yet been setup. Please visit https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation to learn how to setup the plugin.");
+				new ErrorReporter("§cThe plugin has not been setup yet. Please visit https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation to learn how to setup the plugin.");
 				break;
 			default:
 				new ErrorReporter("§cPartyDataTransferMethod must be either \"redis\" or \"mysql\". Please refer to the installation guide (https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation) for more information.");
