@@ -1,4 +1,4 @@
-package de.simonsator.spigot.party.redis;
+package de.simonsator.partyandfriends.spigot.party.redis;
 
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.api.party.PartyManager;

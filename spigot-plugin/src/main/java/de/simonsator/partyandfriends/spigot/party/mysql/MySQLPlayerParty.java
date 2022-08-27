@@ -1,4 +1,4 @@
-package de.simonsator.spigot.party.mysql;
+package de.simonsator.partyandfriends.spigot.party.mysql;
 
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.api.party.PlayerParty;
