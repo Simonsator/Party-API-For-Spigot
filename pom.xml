@@ -5,76 +5,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.simonsator</groupId>
-	<artifactId>Spigot-Party-API</artifactId>
+	<artifactId>spigot-party-api-parent</artifactId>
+	<packaging>pom</packaging>
 	<version>1.0.3-SNAPSHOT</version>
+	<modules>
+		<module>proxy-common</module>
+		<module>bungeecord-mysql</module>
+		<module>velocity-mysql</module>
+		<module>party-spigot-api-for-party-and-friends</module>
+		<module>spigot-plugin</module>
+	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<repositories>
-		<repository>
-			<id>bungeecord-repo</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</repository>
-		<repository>
-			<id>simonsators-repo</id>
-			<url>https://simonsator.de/repo/</url>
-		</repository>
-		<repository>
-			<id>spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-		</repository>
-		<repository>
-			<id>papermc</id>
-			<url>https://repo.papermc.io/repository/maven-public/</url>
-		</repository>
-	</repositories>
-	<dependencies>
-		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>1.13.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.simonsator</groupId>
-			<artifactId>Party-and-Friends-MySQL-Edition-Spigot-API</artifactId>
-			<version>1.5.4-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>4.2.3</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.md-5</groupId>
-			<artifactId>bungeecord-api</artifactId>
-			<version>1.19-R0.1-SNAPSHOT</version>
-			<type>jar</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.simonsator</groupId>
-			<artifactId>BungeecordPartyAndFriends</artifactId>
-			<version>1.0.88</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.velocitypowered</groupId>
-			<artifactId>velocity-api</artifactId>
-			<version>3.1.1</version>
-			<type>jar</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.simonsator</groupId>
-			<artifactId>VelocityPoweredPartyAndFriends</artifactId>
-			<version>1.0.87</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
