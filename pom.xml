@@ -27,5 +27,6 @@
 		<module>velocity-mysql</module>
 		<module>api</module>
 		<module>spigot-plugin</module>
+		<module>final-build</module>
 	</modules>
 </project>
