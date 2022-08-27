@@ -1,0 +1,6 @@
+main: de.simonsator.partyandfriends.spigot.PartyTest
+name: Spigot-Party-API-PAF-Test
+version: ${project.version}
+author: Simonsator
+depend: [Spigot-Party-API-PAF]
+api-version: 1.13

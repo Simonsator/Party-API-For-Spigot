@@ -29,5 +29,6 @@
 		<module>api</module>
 		<module>spigot-plugin</module>
 		<module>final-build</module>
+		<module>test</module>
 	</modules>
 </project>
