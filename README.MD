@@ -41,7 +41,7 @@ if (party != null) {
 	<dependency>
 		<groupId>de.simonsator</groupId>
 		<artifactId>Party-and-Friends-MySQL-Edition-Spigot-API</artifactId>
-		<version>1.5.3</version>
+		<version>1.5.4-RELEASE</version>
 		<scope>provided</scope>
 	</dependency>
 	<dependency>
