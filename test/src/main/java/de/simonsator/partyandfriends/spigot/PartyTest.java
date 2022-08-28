@@ -26,9 +26,9 @@ public class PartyTest extends JavaPlugin implements Listener {
 			bukkitPlayer.sendMessage("No Party");
 			return;
 		}
-		bukkitPlayer.sendMessage("Leader" + party.getLeader().getName());
+		bukkitPlayer.sendMessage("Leader: " + party.getLeader().getName());
 		for (PAFPlayer p : party.getPlayers())
-			bukkitPlayer.sendMessage("members" + p.getName());
+			bukkitPlayer.sendMessage("Members: " + p.getName());
 	}
 
 	@Override
