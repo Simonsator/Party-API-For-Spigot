@@ -27,7 +27,7 @@ if (party != null) {
 	// The player is not in a party
 }
 ```
-
+You can find the JavaDoc [here](https://simonsator.de/JavaDoc/PartyRedisBungeeAPIForSpigot/index.html).
 ## Maven Dependency
 
 ```
