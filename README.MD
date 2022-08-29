@@ -55,7 +55,7 @@ if (party != null) {
 
 ### Alternatives
 
-You may also use the [callback api(https://github.com/Simonsator/Example-For-Spigot-Party-Data-Callback-API) to retrieve
+You may also use the [callback api](https://github.com/Simonsator/Example-For-Spigot-Party-Data-Callback-API) to retrieve
 party data
 
 ## How to build
