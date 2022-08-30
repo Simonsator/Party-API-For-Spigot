@@ -12,15 +12,6 @@
 	<properties>
 		<maven.deploy.skip>false</maven.deploy.skip>
 	</properties>
-	<build>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-				<version>3.5.2</version>
-			</extension>
-		</extensions>
-	</build>
 	<repositories>
 		<repository>
 			<id>simonsators-repo</id>
@@ -35,10 +26,4 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	<distributionManagement>
-		<repository>
-			<id>simonsators-web-server</id>
-			<url>sftp://ssh.strato.de/simonsator/repo</url>
-		</repository>
-	</distributionManagement>
 </project>

@@ -12,9 +12,16 @@
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.deploy.skip>true</maven.deploy.skip>
+		<maven.deploy.skip>false</maven.deploy.skip>
 	</properties>
 	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>3.5.2</version>
+			</extension>
+		</extensions>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -31,4 +38,10 @@
 		<module>final-build</module>
 		<module>test</module>
 	</modules>
+	<distributionManagement>
+		<repository>
+			<id>simonsators-web-server</id>
+			<url>sftp://ssh.strato.de/simonsator/repo</url>
+		</repository>
+	</distributionManagement>
 </project>
