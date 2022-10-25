@@ -22,7 +22,7 @@ public class MySQLConnection extends SQLCommunication {
 		try {
 			tableExists();
 		} catch (SQLException e) {
-			new ErrorReporter("§cYou did not install this plugin on your Bungeecord/Velocity server. Please read the installation guid (https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation)");
+			new ErrorReporter("§cYou did not install this plugin on your Bungeecord/Velocity server. Please read the installation guide (https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation)");
 			e.printStackTrace();
 		}
 	}
