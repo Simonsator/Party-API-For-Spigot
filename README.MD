@@ -18,7 +18,7 @@ You may download a compiled version of the plugin from
 
 ## How to use
 
-```
+```java
 PAFPlayer pafPlayer = PAFPlayerManager.getInstance().getPlayer(pPlayer.getUniqueId());
 PlayerParty party = PartyManager.getInstance().getParty(pafPlayer);
 if (party != null) {
@@ -30,7 +30,7 @@ if (party != null) {
 You can find the JavaDoc [here](https://simonsator.de/JavaDoc/PartyRedisBungeeAPIForSpigot/index.html).
 ## Maven Dependency
 
-```
+```xml
 <repositories>
 	<repository>
 		<id>simonsators-repo</id>
