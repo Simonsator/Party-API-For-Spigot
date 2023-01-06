@@ -64,12 +64,14 @@ public class PartyAPIForSpigotPlugin extends JavaPlugin implements PluginMessage
 		} catch (InvalidConfigurationException e) {
 			throw new RuntimeException(e);
 		}
-		this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
+		if (getConfig().getBoolean("Events.enabled"))
+			this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
 	}
 
 	@Override
 	public void onDisable() {
-		this.getServer().getMessenger().unregisterIncomingPluginChannel(this);
+		if (getConfig().getBoolean("Events.enabled"))
+			this.getServer().getMessenger().unregisterIncomingPluginChannel(this);
 	}
 
 	//Event Caller

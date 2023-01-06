@@ -5,3 +5,6 @@ Redis:
   Host: 'localhost'
   Password: ''
   Port: 6379
+
+Events:
+  enabled: true
