@@ -80,6 +80,18 @@
 		</dependency>
 		<dependency>
 			<groupId>de.simonsator</groupId>
+			<artifactId>DevelopmentPAFSpigot</artifactId>
+			<version>1.0.67</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.simonsator</groupId>
+			<artifactId>Party-and-Friends-GUI-Core</artifactId>
+			<version>1.0.238</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.simonsator</groupId>
 			<artifactId>spigot-party-api-for-party-and-friends</artifactId>
 			<version>${project.version}</version>
 		</dependency>

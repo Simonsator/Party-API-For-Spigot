@@ -1,9 +1,8 @@
 package de.simonsator.partyandfriends.spigot.api.party.events;
 
-
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
-import de.simonsator.partyandfriends.spigot.api.party.PlayerParty;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This is event is called when a player left a party (no matter if he disconnects from the server, gets kicked or just uses /party leave).
@@ -14,8 +13,8 @@ public class LeftPartyEvent extends PartyEvent {
 
 	private static final HandlerList HANDLERS = new HandlerList();
 
-	public LeftPartyEvent(PlayerParty pParty, PAFPlayer pPlayer) {
-		super(pParty);
+	public LeftPartyEvent(PAFPlayer pPlayer) {
+		super(null);
 		PLAYER = pPlayer;
 	}
 
@@ -24,7 +23,7 @@ public class LeftPartyEvent extends PartyEvent {
 	}
 
 	@Override
-	public HandlerList getHandlers() {
+	public @NotNull HandlerList getHandlers() {
 		return HANDLERS;
 	}
 }

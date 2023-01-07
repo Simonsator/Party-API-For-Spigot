@@ -3,6 +3,7 @@ package de.simonsator.partyandfriends.spigot.api.party.events;
 
 import de.simonsator.partyandfriends.spigot.api.party.PlayerParty;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 public class PartyCreatedEvent extends PartyEvent {
 	private static final HandlerList HANDLERS = new HandlerList();
@@ -11,7 +12,7 @@ public class PartyCreatedEvent extends PartyEvent {
 	}
 
 	@Override
-	public HandlerList getHandlers() {
+	public @NotNull HandlerList getHandlers() {
 		return HANDLERS;
 	}
 }

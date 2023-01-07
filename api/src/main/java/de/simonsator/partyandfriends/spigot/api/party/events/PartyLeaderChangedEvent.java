@@ -4,6 +4,7 @@ package de.simonsator.partyandfriends.spigot.api.party.events;
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.api.party.PlayerParty;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 public class PartyLeaderChangedEvent extends PartyEvent {
 	private final PAFPlayer NEW_LEADER;
@@ -20,7 +21,7 @@ public class PartyLeaderChangedEvent extends PartyEvent {
 	}
 
 	@Override
-	public HandlerList getHandlers() {
+	public @NotNull HandlerList getHandlers() {
 		return HANDLERS;
 	}
 }

@@ -1,23 +1,13 @@
 package de.simonsator.partyandfriends.spigot;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
-import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayerManager;
-import de.simonsator.partyandfriends.spigot.api.party.PartyManager;
-import de.simonsator.partyandfriends.spigot.api.party.PlayerParty;
-import de.simonsator.partyandfriends.spigot.api.party.events.LeftPartyEvent;
-import de.simonsator.partyandfriends.spigot.api.party.events.PartyCreatedEvent;
-import de.simonsator.partyandfriends.spigot.api.party.events.PartyJoinEvent;
-import de.simonsator.partyandfriends.spigot.api.party.events.PartyLeaderChangedEvent;
 import de.simonsator.partyandfriends.spigot.error.ErrorReporter;
 import de.simonsator.partyandfriends.spigot.main.Main;
 import de.simonsator.partyandfriends.spigot.party.mysql.MySQLPartyManager;
 import de.simonsator.partyandfriends.spigot.party.redis.RedisPartyManager;
+import de.simonsator.partyandfriendsgui.communication.BungeecordCommunication;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.messaging.PluginMessageListener;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -25,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 
-public class PartyAPIForSpigotPlugin extends JavaPlugin implements PluginMessageListener {
+public class PartyAPIForSpigotPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		getDataFolder().mkdir();
@@ -64,43 +54,7 @@ public class PartyAPIForSpigotPlugin extends JavaPlugin implements PluginMessage
 		} catch (InvalidConfigurationException e) {
 			throw new RuntimeException(e);
 		}
-		if (getConfig().getBoolean("Events.enabled"))
-			this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
-	}
-
-	@Override
-	public void onDisable() {
-		if (getConfig().getBoolean("Events.enabled"))
-			this.getServer().getMessenger().unregisterIncomingPluginChannel(this);
-	}
-
-	//Event Caller
-	@Override
-	public void onPluginMessageReceived(String channel, @NotNull Player player, byte[] message) {
-		if (!channel.equals("BungeeCord")) return;
-		ByteArrayDataInput in = ByteStreams.newDataInput(message);
-		String subchannel = in.readUTF();
-		switch (subchannel) {
-			case "LeftPartyEvent": {
-				new LeftPartyEvent(getPAFParty(player), PAFPlayerManager.getInstance().getPlayer(player.getUniqueId()));
-				break;
-			}
-			case "PartyCreatedEvent": {
-				new PartyCreatedEvent(getPAFParty(player));
-				break;
-			}
-			case "PartyJoinEvent": {
-				new PartyJoinEvent(getPAFParty(player), PAFPlayerManager.getInstance().getPlayer(player.getUniqueId()));
-				break;
-			}
-			case "PartyLeaderChangedEvent": {
-				new PartyLeaderChangedEvent(getPAFParty(player), PAFPlayerManager.getInstance().getPlayer(player.getUniqueId()));
-				break;
-			}
-		}
-	}
-
-	private PlayerParty getPAFParty(Player p) {
-		return PartyManager.getInstance().getParty(PAFPlayerManager.getInstance().getPlayer(p.getUniqueId()));
+		if (getConfig().getBoolean("Events.enabled")  && Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("PartyAndFriendsGUI")).isEnabled())
+			BungeecordCommunication.getInstance().registerTask(new EventCommunication());
 	}
 }
