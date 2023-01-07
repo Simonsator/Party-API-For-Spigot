@@ -18,7 +18,7 @@ public class EventCommunication extends CommunicationTask {
 
     @Override
     public void executeTask(Player player, JsonObject jsonObject) {
-        switch (jsonObject.getAsJsonObject("Event").get("EventName").getAsString()) {
+        switch (jsonObject.get("EventName").getAsString()) {
             case "LeftPartyEvent": {
                 new LeftPartyEvent(PAFPlayerManager.getInstance().getPlayer(player.getUniqueId()));
                 break;
