@@ -16,6 +16,7 @@ public class PartyLeaderChangedEvent extends PartyEvent {
 		NEW_LEADER = pNewLeader;
 	}
 
+	@SuppressWarnings("unused")
 	public PAFPlayer getNewLeader() {
 		return NEW_LEADER;
 	}

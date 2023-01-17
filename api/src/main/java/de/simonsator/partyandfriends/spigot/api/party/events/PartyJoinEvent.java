@@ -15,6 +15,7 @@ public class PartyJoinEvent extends PartyEvent {
 		PLAYER = pPlayer;
 	}
 
+	@SuppressWarnings("unused")
 	public PAFPlayer getPlayer() {
 		return PLAYER;
 	}

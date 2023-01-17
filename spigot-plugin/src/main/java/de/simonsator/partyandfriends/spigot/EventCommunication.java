@@ -1,5 +1,6 @@
 package de.simonsator.partyandfriends.spigot;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayerManager;
 import de.simonsator.partyandfriends.spigot.api.party.PartyManager;
@@ -11,6 +12,9 @@ import de.simonsator.partyandfriends.spigot.api.party.events.PartyLeaderChangedE
 import de.simonsator.partyandfriendsgui.communication.tasks.CommunicationTask;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+import java.util.UUID;
+
 public class EventCommunication extends CommunicationTask {
     protected EventCommunication() {
         super("Events");
@@ -20,7 +24,13 @@ public class EventCommunication extends CommunicationTask {
     public void executeTask(Player player, JsonObject jsonObject) {
         switch (jsonObject.get("EventName").getAsString()) {
             case "LeftPartyEvent": {
-                new LeftPartyEvent(PAFPlayerManager.getInstance().getPlayer(player.getUniqueId()));
+                PlayerParty party = null;
+                for (JsonElement jsonElement: jsonObject.getAsJsonArray("Players")) {
+                    UUID UUID = java.util.UUID.fromString(jsonElement.getAsString());
+                    if (getPAFParty(Objects.requireNonNull(UUID)) != null)
+                        party = getPAFParty(Objects.requireNonNull(UUID));
+                }
+                new LeftPartyEvent(party, PAFPlayerManager.getInstance().getPlayer(player.getUniqueId()));
                 break;
             }
             case "PartyCreatedEvent": {
@@ -40,5 +50,9 @@ public class EventCommunication extends CommunicationTask {
 
     private PlayerParty getPAFParty(Player p) {
         return PartyManager.getInstance().getParty(PAFPlayerManager.getInstance().getPlayer(p.getUniqueId()));
+    }
+
+    private PlayerParty getPAFParty(UUID p) {
+        return PartyManager.getInstance().getParty(PAFPlayerManager.getInstance().getPlayer(p));
     }
 }
