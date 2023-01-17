@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This is event is called when a player left a party (no matter if he disconnects from the server, gets kicked or just uses /party leave).
+ * This is event is called when a player left a party (no matter if they disconnect from the server, gets kicked or just uses /party leave).
  * At this point no new leader was chosen yet. If the leader left the party the leader of the party will now be null.
  */
 public class LeftPartyEvent extends PartyEvent {

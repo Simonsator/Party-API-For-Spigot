@@ -72,11 +72,11 @@ public abstract class PlayerParty {
 
 	/**
 	 * Returns true if the given player is the leader of this party,
-	 * and false if he is not the leader, of this party
+	 * and false if they are not the leader, of this party
 	 *
 	 * @param player The player
 	 * @return Returns true if the given player is the leader of this party,
-	 * and false if he is not the leader, of this party
+	 * and false if they are not the leader, of this party
 	 */
 	public boolean isLeader(PAFPlayer player) {
 		return getLeader() != null && player != null && this.getLeader().getUniqueId().equals(player.getUniqueId());
