@@ -1,7 +1,7 @@
 main: de.simonsator.partyandfriends.spigot.PartyAPIForSpigotPlugin
 name: Spigot-Party-API-PAF
 version: ${project.version}
-author: Simonsator
+author: Simonsator, J.T.
 depend: [FriendsAPIForPartyAndFriends]
 softdepend: [PartyAndFriendsGUI]
 api-version: 1.13
