@@ -54,7 +54,7 @@ public class PartyAPIForSpigotPlugin extends JavaPlugin {
 		} catch (InvalidConfigurationException e) {
 			throw new RuntimeException(e);
 		}
-		if (getConfig().getBoolean("Events.enabled") && Bukkit.getPluginManager().isPluginEnabled("PartyAndFriendsGUI"))
+		if (Bukkit.getPluginManager().isPluginEnabled("PartyAndFriendsGUI"))
 			BungeecordCommunication.getInstance().registerTask(new EventCommunication());
 	}
 }
