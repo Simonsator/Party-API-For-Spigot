@@ -108,7 +108,7 @@ You can find the JavaDoc [here](https://simonsator.de/JavaDoc/PartyRedisBungeeAP
 <dependency>
 	<groupId>de.simonsator</groupId>
 	<artifactId>spigot-party-api-for-party-and-friends</artifactId>
-	<version>1.0.4-RELEASE</version>
+	<version>1.0.5-RELEASE</version>
 	<scope>provided</scope>
 </dependency>
 </dependencies>
