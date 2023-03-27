@@ -38,7 +38,7 @@ public class PartyEventBridge extends CommunicationTask {
 			}
 		}
 		for (PartyEventListenerInterface listener : LISTENERS) {
-			switch (pJObj.get("").getAsString()) {
+			switch (pJObj.get("EventType").getAsString()) {
 				case "LeftPartyEvent":
 					listener.onLeftParty(player, party);
 					break;
@@ -50,6 +50,9 @@ public class PartyEventBridge extends CommunicationTask {
 					break;
 				case "PartyLeaderChangedEvent":
 					listener.onPartyLeaderChanged(player, party);
+					break;
+				default:
+					System.out.println("Unknown event: " + pJObj.get("EventType").getAsString());
 					break;
 			}
 		}
