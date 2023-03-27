@@ -11,7 +11,7 @@ import de.simonsator.partyandfriends.velocity.main.PAFPlugin;
 
 import java.nio.file.Path;
 
-@Plugin(id = "party-proxy-bridge-for-paf", name = "Party Proxy Bridge for Party and Friends", version = "1.0.4-RELEASE",
+@Plugin(id = "party-proxy-bridge-for-paf", name = "Party Proxy Bridge for Party and Friends", version = "1.0.5-RELEASE",
 		description = "Loads Party Proxy Bridge for Party and Friends", authors = {"Simonsator"}, dependencies = {@Dependency(id = "partyandfriends")})
 public class PartyAPISpigotBridgeLoader {
 	private final Path folder;
@@ -24,7 +24,7 @@ public class PartyAPISpigotBridgeLoader {
 	@Subscribe
 	public void onProxyInitialization(ProxyInitializeEvent event) {
 		PAFPlugin.loadExtension(new VelocityExtensionLoadingInfo(new PartyAPIForSpigotVelocityBridgePlugin(folder),
-				"party-proxy-bridge-for-paf", "Loads Party Proxy Bridge for Party and Friends", "1.0.4-RELEASE", "Simonsator"));
+				"party-proxy-bridge-for-paf", "Loads Party Proxy Bridge for Party and Friends", "1.0.5-RELEASE", "Simonsator"));
 	}
 
 }

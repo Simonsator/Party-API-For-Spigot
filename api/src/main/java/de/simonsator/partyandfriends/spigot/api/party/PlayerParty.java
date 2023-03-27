@@ -11,6 +11,9 @@ import java.util.UUID;
  * @author Simonsator
  */
 public abstract class PlayerParty {
+	protected PlayerParty() {
+	}
+
 	/**
 	 * Returns true if the player is a member of the party. Returns false if the player is not part of this party or if the player is the party leader.
 	 *

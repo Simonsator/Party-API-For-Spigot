@@ -15,7 +15,7 @@ public abstract class PartyManager implements Deactivated {
 	/**
 	 * This object should only be created by the server during startup. Don't create a new instance of this object. Use {@link #getInstance()} instead.
 	 */
-	public PartyManager() {
+	protected PartyManager() {
 		instance = this;
 		Disabler.getInstance().registerDeactivated(this);
 	}
