@@ -37,8 +37,8 @@
 		</dependency>
 		<dependency>
 			<groupId>de.simonsator</groupId>
-			<artifactId>Spigot-Party-API-For-RedisBungee</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
+			<artifactId>spigot-party-api-for-party-and-friends</artifactId>
+			<version>1.0.4-RELEASE</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

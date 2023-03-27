@@ -71,7 +71,7 @@
 		<dependency>
 			<groupId>de.simonsator</groupId>
 			<artifactId>spigot-party-api-spigot-plugin</artifactId>
-			<version>1.0.4-RELEASE</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>
