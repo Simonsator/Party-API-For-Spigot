@@ -22,12 +22,12 @@ You may download a compiled version of the plugin from
 
 ```java
 PAFPlayer pafPlayer=PAFPlayerManager.getInstance().getPlayer(pPlayer.getUniqueId());
-		PlayerParty party=PartyManager.getInstance().getParty(pafPlayer);
-		if(party!=null){
-		// The party exists. You can use different methods of the PlayerParty object to get information about the party, e.g. who is in the party.
-		}else{
-		// The player is not in a party
-		}
+PlayerParty party=PartyManager.getInstance().getParty(pafPlayer);
+if(party!=null){
+    // The party exists. You can use different methods of the PlayerParty object to get information about the party, e.g. who is in the party.
+}else{
+    // The player is not in a party
+}
 ```
 
 ### Using Events
@@ -48,42 +48,42 @@ method [PartyEventManager.isBridgeAvailable()](https://simonsator.de/?dir=JavaDo
 #### Example
 
 ```java
-		if (PartyEventManager.isBridgeAvailable()) {
-			try {
-				PartyEventManager.registerPartyEventListener(new PartyEventListenerInterface() {
-					private final ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+if (PartyEventManager.isBridgeAvailable()) {
+	try {
+		PartyEventManager.registerPartyEventListener(new PartyEventListenerInterface() {
+			private final ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
-					@Override
-					public void onLeftParty(PAFPlayer pPlayer, @Nullable PlayerParty pParty) {
-						console.sendMessage("Left party" + pPlayer.getName());
-						printParty(console, pParty);
-					}
-
-					@Override
-					public void onPartyCreated(@Nullable PlayerParty pParty) {
-						console.sendMessage("Created party");
-						printParty(console, pParty);
-
-					}
-
-					@Override
-					public void onPartyJoin(PAFPlayer pPlayer, @Nullable PlayerParty pParty) {
-						console.sendMessage("Joined party" + pPlayer.getName());
-						printParty(console, pParty);
-					}
-
-					@Override
-					public void onPartyLeaderChanged(PAFPlayer pNewLeader, @Nullable PlayerParty pParty) {
-						console.sendMessage("Leader changed party" + pNewLeader.getName());
-						printParty(console, pParty);
-					}
-				});
-			} catch (BridgeNotAvailableException e) {
-				e.printStackTrace();
+			@Override
+			public void onLeftParty(PAFPlayer pPlayer, @Nullable PlayerParty pParty) {
+				console.sendMessage("Left party" + pPlayer.getName());
+				printParty(console, pParty);
 			}
-		} else {
-			Bukkit.getServer().getConsoleSender().sendMessage("§cThe Party And Friends main plugin is not installed on this spigot server. Please download it from https://www.spigotmc.org/resources/10123/");
-		}
+
+			@Override
+			public void onPartyCreated(@Nullable PlayerParty pParty) {
+				console.sendMessage("Created party");
+				printParty(console, pParty);
+
+			}
+
+			@Override
+			public void onPartyJoin(PAFPlayer pPlayer, @Nullable PlayerParty pParty) {
+				console.sendMessage("Joined party" + pPlayer.getName());
+				printParty(console, pParty);
+			}
+
+			@Override
+			public void onPartyLeaderChanged(PAFPlayer pNewLeader, @Nullable PlayerParty pParty) {
+				console.sendMessage("Leader changed party" + pNewLeader.getName());
+				printParty(console, pParty);
+			}
+		});
+	} catch (BridgeNotAvailableException e) {
+		e.printStackTrace();
+	}
+} else {
+	Bukkit.getServer().getConsoleSender().sendMessage("§cThe Party And Friends main plugin is not installed on this spigot server. Please download it from https://www.spigotmc.org/resources/10123/");
+}
 ```
 
 You can find the JavaDoc [here](https://simonsator.de/JavaDoc/PartyRedisBungeeAPIForSpigot/index.html).
@@ -91,7 +91,6 @@ You can find the JavaDoc [here](https://simonsator.de/JavaDoc/PartyRedisBungeeAP
 ## Maven Dependency
 
 ```xml
-
 <repositories>
 	<repository>
 		<id>simonsators-repo</id>
