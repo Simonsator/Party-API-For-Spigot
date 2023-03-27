@@ -7,9 +7,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PAFGUIBridgePartyEventManager extends PartyEventManager {
-	private final PartyEventBridge BRIDGE = new PartyEventBridge();
+	private final PartyEventBridge BRIDGE;
 
 	public PAFGUIBridgePartyEventManager(JavaPlugin pPlugin) {
+		BRIDGE = new PartyEventBridge(pPlugin);
 		BungeecordCommunication.getInstance().registerTask(BRIDGE);
 		Bukkit.getPluginManager().registerEvents(BRIDGE, pPlugin);
 		setInstance(this);

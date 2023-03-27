@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +22,13 @@ import java.util.UUID;
 
 public class PartyEventBridge extends CommunicationTask implements Listener {
 	private final List<PartyEventListenerInterface> LISTENERS = new ArrayList<>();
+	private final int DELAY = Bukkit.getServer().getPluginManager().getPlugin("PartyAndFriendsGUI").getConfig().
+			getInt("General.Compatibility.TicksUntilMessageChannelIsUsedAfterJoin");
+	private final Plugin PLUGIN;
 
-	protected PartyEventBridge() {
+	protected PartyEventBridge(Plugin pPlugin) {
 		super("PartyEventBridge");
+		PLUGIN = pPlugin;
 	}
 
 	@Override
@@ -76,7 +81,7 @@ public class PartyEventBridge extends CommunicationTask implements Listener {
 	@EventHandler
 	public void onJoinEvent(PlayerJoinEvent pEvent) {
 		if (Bukkit.getOnlinePlayers().size() == 1) {
-			sendRegistrationMessage(pEvent.getPlayer());
+			Bukkit.getScheduler().runTaskLater(PLUGIN, () -> sendRegistrationMessage(pEvent.getPlayer()), DELAY);
 		}
 	}
 
