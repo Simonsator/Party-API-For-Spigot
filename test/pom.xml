@@ -41,5 +41,11 @@
 			<version>1.0.4-RELEASE</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>24.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
