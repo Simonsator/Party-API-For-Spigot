@@ -33,39 +33,41 @@ public class PartyEventBridge extends CommunicationTask implements Listener {
 
 	@Override
 	public void executeTask(Player pPlayer, JsonObject pJObj) {
-		PAFPlayer player = null;
-		if (pJObj.has("Player")) {
-			player = PAFPlayerManager.getInstance().getPlayer(UUID.fromString(pJObj.get("Player").getAsString()));
-		}
-		PlayerParty party = null;
-		for (JsonElement partyMember : pJObj.get("AllPartyMembers").getAsJsonArray()) {
-			PAFPlayer pafPlayer = PAFPlayerManager.getInstance().getPlayer(UUID.fromString(partyMember.getAsString()));
-			if (pafPlayer != null) {
-				party = PartyManager.getInstance().getParty(pafPlayer);
-				if (party != null) {
-					break;
+		Bukkit.getScheduler().runTaskLaterAsynchronously(PLUGIN, () -> {
+			PAFPlayer player = null;
+			if (pJObj.has("Player")) {
+				player = PAFPlayerManager.getInstance().getPlayer(UUID.fromString(pJObj.get("Player").getAsString()));
+			}
+			PlayerParty party = null;
+			for (JsonElement partyMember : pJObj.get("AllPartyMembers").getAsJsonArray()) {
+				PAFPlayer pafPlayer = PAFPlayerManager.getInstance().getPlayer(UUID.fromString(partyMember.getAsString()));
+				if (pafPlayer != null) {
+					party = PartyManager.getInstance().getParty(pafPlayer);
+					if (party != null) {
+						break;
+					}
 				}
 			}
-		}
-		for (PartyEventListenerInterface listener : LISTENERS) {
-			switch (pJObj.get("EventType").getAsString()) {
-				case "LeftPartyEvent":
-					listener.onLeftParty(player, party);
-					break;
-				case "PartyCreatedEvent":
-					listener.onPartyCreated(party);
-					break;
-				case "PartyJoinEvent":
-					listener.onPartyJoin(player, party);
-					break;
-				case "PartyLeaderChangedEvent":
-					listener.onPartyLeaderChanged(player, party);
-					break;
-				default:
-					System.out.println("Unknown event: " + pJObj.get("EventType").getAsString());
-					break;
+			for (PartyEventListenerInterface listener : LISTENERS) {
+				switch (pJObj.get("EventType").getAsString()) {
+					case "LeftPartyEvent":
+						listener.onLeftParty(player, party);
+						break;
+					case "PartyCreatedEvent":
+						listener.onPartyCreated(party);
+						break;
+					case "PartyJoinEvent":
+						listener.onPartyJoin(player, party);
+						break;
+					case "PartyLeaderChangedEvent":
+						listener.onPartyLeaderChanged(player, party);
+						break;
+					default:
+						System.out.println("Unknown event: " + pJObj.get("EventType").getAsString());
+						break;
+				}
 			}
-		}
+		}, DELAY);
 	}
 
 	public void registerListener(PartyEventListenerInterface pListener) {
@@ -81,13 +83,16 @@ public class PartyEventBridge extends CommunicationTask implements Listener {
 	@EventHandler
 	public void onJoinEvent(PlayerJoinEvent pEvent) {
 		if (Bukkit.getOnlinePlayers().size() == 1) {
-			Bukkit.getScheduler().runTaskLater(PLUGIN, () -> sendRegistrationMessage(pEvent.getPlayer()), DELAY);
+			Bukkit.getScheduler().runTaskLater(PLUGIN, () -> {
+				sendRegistrationMessage(pEvent.getPlayer());
+				System.out.println(DELAY);
+			}, DELAY);
 		}
 	}
 
 	private void sendRegistrationMessage(Player pPlayer) {
 		JsonObject jobj = new JsonObject();
-		jobj.addProperty("task", "OpenSettingsMenu");
+		jobj.addProperty("task", "PartyEventBridge");
 		PartyFriendsAPI.sendMessage(jobj, pPlayer);
 	}
 }
