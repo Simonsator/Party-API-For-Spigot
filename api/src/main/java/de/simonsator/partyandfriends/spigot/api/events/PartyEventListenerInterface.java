@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public interface PartyEventListenerInterface {
 	/**
-	 * This command will only be called if a party member or the person who left the party, is currently on this spigot server.
+	 * This method will only be called if a party member or the person who left the party, is currently on this spigot server.
 	 * Please note that this method is called in an async thread.
 	 *
 	 * @param pPlayer The player who left the party
@@ -19,7 +19,7 @@ public interface PartyEventListenerInterface {
 	void onLeftParty(PAFPlayer pPlayer, @Nullable PlayerParty pParty);
 
 	/**
-	 * This command will only be called if a party member, is currently on this spigot server.
+	 * This method will only be called if a party member, is currently on this spigot server.
 	 * Please note that this method is called in an async thread.
 	 *
 	 * @param pParty The party that was created. If the player deleted the party while this event was being bridged to
@@ -28,7 +28,7 @@ public interface PartyEventListenerInterface {
 	void onPartyCreated(@Nullable PlayerParty pParty);
 
 	/**
-	 * This command will only be called if a party member, is currently on this spigot server.
+	 * This method will only be called if a party member, is currently on this spigot server.
 	 * Please note that this method is called in an async thread.
 	 *
 	 * @param pPlayer The player who joined the party
@@ -38,7 +38,7 @@ public interface PartyEventListenerInterface {
 	void onPartyJoin(PAFPlayer pPlayer, @Nullable PlayerParty pParty);
 
 	/**
-	 * This command will only be called if a party member, is currently on this spigot server.
+	 * This method will only be called if a party member, is currently on this spigot server.
 	 * Please note that this method is called in an async thread.
 	 *
 	 * @param pNewLeader The new leader of the party

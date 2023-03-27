@@ -17,7 +17,7 @@ You may download a compiled version of the plugin from
 # For Developers
 
 ## How to use
-
+### Getting the party of a player
 ```java
 PAFPlayer pafPlayer = PAFPlayerManager.getInstance().getPlayer(pPlayer.getUniqueId());
 PlayerParty party = PartyManager.getInstance().getParty(pafPlayer);
@@ -26,6 +26,9 @@ if (party != null) {
 } else {
 	// The player is not in a party
 }
+```
+### Using Events
+```java
 ```
 You can find the JavaDoc [here](https://simonsator.de/JavaDoc/PartyRedisBungeeAPIForSpigot/index.html).
 ## Maven Dependency

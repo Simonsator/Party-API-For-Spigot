@@ -1,5 +1,9 @@
 package de.simonsator.partyandfriends.spigot.api.events;
 
+/**
+ * The PartyEventManager is used to register a listener for party events. It is used as a bridge between the Spigot
+ * server and the Bungeecord server. The GUI of Party And Friends is required as it is used as a bridge.
+ */
 public abstract class PartyEventManager {
 	private static PartyEventManager instance;
 
