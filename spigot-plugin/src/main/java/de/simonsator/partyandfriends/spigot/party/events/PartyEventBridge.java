@@ -7,14 +7,19 @@ import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayerManager;
 import de.simonsator.partyandfriends.spigot.api.party.PartyManager;
 import de.simonsator.partyandfriends.spigot.api.party.PlayerParty;
+import de.simonsator.partyandfriendsgui.api.PartyFriendsAPI;
 import de.simonsator.partyandfriendsgui.communication.tasks.CommunicationTask;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PartyEventBridge extends CommunicationTask {
+public class PartyEventBridge extends CommunicationTask implements Listener {
 	private final List<PartyEventListenerInterface> LISTENERS = new ArrayList<>();
 
 	protected PartyEventBridge() {
@@ -60,5 +65,24 @@ public class PartyEventBridge extends CommunicationTask {
 
 	public void registerListener(PartyEventListenerInterface pListener) {
 		LISTENERS.add(pListener);
+		JsonObject jobj = new JsonObject();
+		jobj.addProperty("task", "OpenSettingsMenu");
+		Player[] players = Bukkit.getOnlinePlayers().toArray(new Player[0]);
+		if (players.length > 0) {
+			sendRegistrationMessage(players[0]);
+		}
+	}
+
+	@EventHandler
+	public void onJoinEvent(PlayerJoinEvent pEvent) {
+		if (Bukkit.getOnlinePlayers().size() == 1) {
+			sendRegistrationMessage(pEvent.getPlayer());
+		}
+	}
+
+	private void sendRegistrationMessage(Player pPlayer) {
+		JsonObject jobj = new JsonObject();
+		jobj.addProperty("task", "OpenSettingsMenu");
+		PartyFriendsAPI.sendMessage(jobj, pPlayer);
 	}
 }

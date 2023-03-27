@@ -50,7 +50,7 @@ public class PartyAPIForSpigotPlugin extends JavaPlugin {
 					new ErrorReporter("§cPartyDataTransferMethod must be either \"redis\" or \"mysql\". Please refer to the installation guide (https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation) for more information.");
 			}
 			if (Bukkit.getPluginManager().isPluginEnabled("PartyAndFriendsGUI")) {
-				new PAFGUIBridgePartyEventManager();
+				new PAFGUIBridgePartyEventManager(this);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
