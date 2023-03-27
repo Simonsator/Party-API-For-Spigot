@@ -2,8 +2,10 @@ package de.simonsator.partyandfriends.spigot;
 
 import de.simonsator.partyandfriends.spigot.error.ErrorReporter;
 import de.simonsator.partyandfriends.spigot.main.Main;
+import de.simonsator.partyandfriends.spigot.party.events.PAFGUIBridgePartyEventManager;
 import de.simonsator.partyandfriends.spigot.party.mysql.MySQLPartyManager;
 import de.simonsator.partyandfriends.spigot.party.redis.RedisPartyManager;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -46,6 +48,9 @@ public class PartyAPIForSpigotPlugin extends JavaPlugin {
 					break;
 				default:
 					new ErrorReporter("§cPartyDataTransferMethod must be either \"redis\" or \"mysql\". Please refer to the installation guide (https://github.com/Simonsator/Party-API-For-Spigot/wiki/Installation) for more information.");
+			}
+			if (Bukkit.getPluginManager().isPluginEnabled("PartyAndFriendsGUI")) {
+				new PAFGUIBridgePartyEventManager();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

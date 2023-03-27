@@ -90,5 +90,10 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>de.simonsator</groupId>
+			<artifactId>DevelopmentPAFSpigot</artifactId>
+			<version>1.0.239</version>
+		</dependency>
 	</dependencies>
 </project>
