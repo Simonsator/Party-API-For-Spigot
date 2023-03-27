@@ -3,4 +3,6 @@ name: Spigot-Party-API-PAF
 version: ${project.version}
 author: Simonsator
 depend: [FriendsAPIForPartyAndFriends]
+softdepend:
+  - PartyAndFriendsGUI
 api-version: 1.13
