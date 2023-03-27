@@ -7,8 +7,8 @@ package de.simonsator.partyandfriends.spigot.api.events;
 public abstract class PartyEventManager {
 	private static PartyEventManager instance;
 
-	protected static void setInstance(PartyEventManager pInstance) {
-		instance = pInstance;
+	protected PartyEventManager() {
+		instance = this;
 	}
 
 	/**
@@ -21,7 +21,8 @@ public abstract class PartyEventManager {
 	}
 
 	/**
-	 * Registers a listener for party events
+	 * Registers a listener for party events. Please call {@link #isBridgeAvailable()} before calling this method,
+	 * to make sure that the bridge is available.
 	 *
 	 * @param pListener The listener Which will be registered
 	 * @throws BridgeNotAvailableException If the bridge is not available. This means that the GUI of Party And Friends

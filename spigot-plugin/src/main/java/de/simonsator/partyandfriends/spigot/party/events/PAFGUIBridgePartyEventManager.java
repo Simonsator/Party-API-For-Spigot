@@ -13,7 +13,6 @@ public class PAFGUIBridgePartyEventManager extends PartyEventManager {
 		BRIDGE = new PartyEventBridge(pPlugin);
 		BungeecordCommunication.getInstance().registerTask(BRIDGE);
 		Bukkit.getPluginManager().registerEvents(BRIDGE, pPlugin);
-		setInstance(this);
 	}
 
 	@Override
