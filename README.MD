@@ -56,26 +56,21 @@ if (PartyEventManager.isBridgeAvailable()) {
 			@Override
 			public void onLeftParty(PAFPlayer pPlayer, @Nullable PlayerParty pParty) {
 				console.sendMessage("Left party" + pPlayer.getName());
-				printParty(console, pParty);
 			}
 
 			@Override
 			public void onPartyCreated(@Nullable PlayerParty pParty) {
 				console.sendMessage("Created party");
-				printParty(console, pParty);
-
 			}
 
 			@Override
 			public void onPartyJoin(PAFPlayer pPlayer, @Nullable PlayerParty pParty) {
 				console.sendMessage("Joined party" + pPlayer.getName());
-				printParty(console, pParty);
 			}
 
 			@Override
 			public void onPartyLeaderChanged(PAFPlayer pNewLeader, @Nullable PlayerParty pParty) {
 				console.sendMessage("Leader changed party" + pNewLeader.getName());
-				printParty(console, pParty);
 			}
 		});
 	} catch (BridgeNotAvailableException e) {
