@@ -43,7 +43,7 @@ The event system only works if the [GUI of Party And Friends](https://www.spigot
 the Spigot server, as it is used as a bridge to transfer event data from the proxy to the Spigot server. If it is not
 installed [PartyEventManager.registerPartyEventListener(PartyEventListenerInterface pListener)](https://simonsator.de/?dir=JavaDoc/PartyRedisBungeeAPIForSpigot/de/simonsator/partyandfriends/spigot/api/events/PartyEventManager.html#registerPartyEventListener(de.simonsator.partyandfriends.spigot.api.events.PartyEventListenerInterface))
 will throw an exception. To check if the GUI is installed you can use the
-method [PartyEventManager.isBridgeAvailable()](https://simonsator.de/?dir=JavaDoc/PartyRedisBungeeAPIForSpigot/de/simonsator/partyandfriends/spigot/api/events/PartyEventManager.html#isBridgeAvailable()).
+method [PartyEventManager.isBridgeAvailable()](https://simonsator.de/JavaDoc/PartyRedisBungeeAPIForSpigot/de/simonsator/partyandfriends/spigot/api/events/PartyEventManager.html#isBridgeAvailable()).
 
 #### Example
 
