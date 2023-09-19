@@ -3,5 +3,6 @@
 PartyDataTransferMethod: 'None'
 Redis:
   Host: 'localhost'
+  User: ''
   Password: ''
   Port: 6379
