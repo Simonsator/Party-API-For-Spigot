@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>spigot-party-api-parent</artifactId>
 		<groupId>de.simonsator</groupId>
-		<version>1.0.5-RELEASE</version>
+		<version>1.0.6-RELEASE</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>spigot-party-api-test</artifactId>
@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>de.simonsator</groupId>
 			<artifactId>spigot-party-api-for-party-and-friends</artifactId>
-			<version>1.0.5-RELEASE</version>
+			<version>1.0.6-RELEASE</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
