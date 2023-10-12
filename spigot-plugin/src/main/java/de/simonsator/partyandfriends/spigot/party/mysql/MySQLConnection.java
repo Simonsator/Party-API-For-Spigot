@@ -17,7 +17,7 @@ public class MySQLConnection extends SQLCommunication {
 	private final String TABLE_PREFIX;
 
 	public MySQLConnection(MySQLData pMySQLData) {
-		super(pMySQLData.DATABASE, "jdbc:mysql://" + pMySQLData.HOST + ":" + pMySQLData.PORT, pMySQLData.USERNAME, pMySQLData.PASSWORD, pMySQLData.USE_SSL);
+		super(pMySQLData.DATABASE, pMySQLData.DRIVER_URL + pMySQLData.HOST + ":" + pMySQLData.PORT, pMySQLData.USERNAME, pMySQLData.PASSWORD, pMySQLData.USE_SSL);
 		this.TABLE_PREFIX = pMySQLData.TABLE_PREFIX;
 		try {
 			tableExists();
