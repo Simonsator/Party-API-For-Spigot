@@ -96,7 +96,7 @@ You can find the JavaDoc [here](https://simonsator.de/JavaDoc/PartyRedisBungeeAP
 <dependency>
 	<groupId>de.simonsator</groupId>
 	<artifactId>Party-and-Friends-MySQL-Edition-Spigot-API</artifactId>
-	<version>1.5.4-RELEASE</version>
+	<version>1.6.2-RELEASE</version>
 	<scope>provided</scope>
 </dependency>
 <dependency>
