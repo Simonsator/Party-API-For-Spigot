@@ -85,7 +85,6 @@ public class PartyEventBridge extends CommunicationTask implements Listener {
 		if (Bukkit.getOnlinePlayers().size() == 1) {
 			Bukkit.getScheduler().runTaskLater(PLUGIN, () -> {
 				sendRegistrationMessage(pEvent.getPlayer());
-				System.out.println(DELAY);
 			}, DELAY);
 		}
 	}
