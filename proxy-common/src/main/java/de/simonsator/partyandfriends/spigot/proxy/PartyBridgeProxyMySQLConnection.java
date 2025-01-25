@@ -37,7 +37,7 @@ public interface PartyBridgeProxyMySQLConnection {
 		Connection con = getConnection();
 		PreparedStatement prepStmt = null;
 		try {
-			prepStmt = con.prepareStatement("insert into `" + getTablePrefix() + "party` (`player_member_id`, `leader_id`) values ( ?, ?)");
+			prepStmt = con.prepareStatement("INSERT INTO `" + getTablePrefix() + "party` (`player_member_id`, `leader_id`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `leader_id` = VALUES(`leader_id`)");
 			for (int memberId : memberIds) {
 				prepStmt.setInt(1, memberId);
 				prepStmt.setInt(2, leaderId);
@@ -69,7 +69,7 @@ public interface PartyBridgeProxyMySQLConnection {
 		Connection con = getConnection();
 		PreparedStatement prepStmt = null;
 		try {
-			prepStmt = con.prepareStatement("insert IGNORE into `" + getTablePrefix() + "party` (`player_member_id`, `leader_id`) values ( ?, ?) ");
+			prepStmt = con.prepareStatement("INSERT INTO `" + getTablePrefix() + "party` (`player_member_id`, `leader_id`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `leader_id` = VALUES(`leader_id`)");
 			prepStmt.setInt(1, pPlayerId);
 			prepStmt.setInt(2, pLeaderId);
 
